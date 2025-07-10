@@ -2,6 +2,7 @@
 import { onMounted, ref } from 'vue';
 import type { Schema } from '../../amplify/data/resource';
 import { generateClient } from 'aws-amplify/data';
+import IconTrash from './icons/IconTrash.vue';
 
 const client = generateClient<Schema>();
 
@@ -50,7 +51,8 @@ function deleteTodo(id: string) {
       >
         <span style="flex: 1;">{{ todo.content }}</span>
         <button @click="deleteTodo(todo.id)" title="Delete" style="background: none; border: none; cursor: pointer; color: #d00; font-size: 1.2em;">
-          🗑️
+
+          <IconTrash />
         </button>
       </li>
     </ul>
