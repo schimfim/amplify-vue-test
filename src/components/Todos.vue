@@ -51,6 +51,7 @@ function deleteTodo(id: string) {
       >
         <span style="flex: 1;">{{ todo.content }}</span>
         <button @click="deleteTodo(todo.id)" title="Delete" style="background: none; border: none; cursor: pointer; color: #d00; font-size: 1.2em;">
+
           <IconTrash />
         </button>
       </li>
