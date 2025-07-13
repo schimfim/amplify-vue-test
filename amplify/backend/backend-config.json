@@ -1,0 +1,26 @@
+{
+  "auth": {
+    "userPoolGroups": {}
+  },
+  "function": {
+    "aboutApi": {
+      "build": true,
+      "providerPlugin": "awscloudformation",
+      "service": "Lambda",
+      "dependsOn": []
+    }
+  },
+  "api": {
+    "aboutApiGateway": {
+      "service": "API Gateway",
+      "providerPlugin": "awscloudformation",
+      "dependsOn": [
+        {
+          "category": "function",
+          "resourceName": "aboutApi",
+          "attributes": ["Name", "Arn"]
+        }
+      ]
+    }
+  }
+}

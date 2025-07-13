@@ -1,15 +1,32 @@
 version: 1
 backend:
   phases:
+    preBuild:
+      commands:
+        - echo "Setting up backend deployment..."
+        - chmod +x build-backend.sh
     build:
       commands:
+        - echo "Deploying Python backend..."
+        - ./build-backend.sh
+    postBuild:
+      commands:
+        - echo "Backend deployment successful"
         - npm ci --cache .npm --prefer-offline
         - npx ampx pipeline-deploy --branch $AWS_BRANCH --app-id $AWS_APP_ID
 frontend:
   phases:
+    preBuild:
+      commands:
+        - echo "Installing frontend dependencies..."
+        - npm ci --cache .npm --prefer-offline
     build:
       commands:
+        - echo "Building frontend..."
         - npm run build
+    postBuild:
+      commands:
+        - echo "Frontend build completed"
   artifacts:
     baseDirectory: dist
     files:
@@ -18,3 +35,4 @@ frontend:
     paths:
       - .npm/**/*
       - node_modules/**/*
+      - backend/venv/**/*

@@ -1,0 +1,8 @@
+{
+  "lambdaLayers": [],
+  "environmentVariables": {
+    "STAGE": "dev",
+    "ABOUT_NAME": "John Doe",
+    "ABOUT_EMAIL": "john.doe@example.com"
+  }
+}
