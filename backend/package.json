@@ -1,0 +1,18 @@
+{
+  "name": "about-page-api",
+  "version": "1.0.0",
+  "description": "Python FastAPI backend for About page data",
+  "main": "main.py",
+  "scripts": {
+    "deploy": "serverless deploy",
+    "deploy:prod": "serverless deploy --stage prod",
+    "remove": "serverless remove",
+    "logs": "serverless logs -f api",
+    "test": "python -m pytest tests/",
+    "dev": "uvicorn main:app --reload --host 0.0.0.0 --port 8000"
+  },
+  "devDependencies": {
+    "serverless": "^3.38.0",
+    "serverless-python-requirements": "^6.0.0"
+  }
+}

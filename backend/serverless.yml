@@ -1,0 +1,36 @@
+service: about-page-api
+
+frameworkVersion: '3'
+
+provider:
+  name: aws
+  runtime: python3.11
+  region: us-east-1
+  stage: ${opt:stage, 'dev'}
+  environment:
+    STAGE: ${self:provider.stage}
+
+functions:
+  api:
+    handler: main.handler
+    events:
+      - httpApi:
+          path: /{proxy+}
+          method: ANY
+    timeout: 30
+    memorySize: 256
+    environment:
+      PYTHONPATH: /var/task
+
+plugins:
+  - serverless-python-requirements
+
+custom:
+  pythonRequirements:
+    dockerizePip: non-linux
+    layer:
+      name: python-deps
+      description: Python dependencies for about page API
+    noDeploy:
+      - coverage
+      - pytest
